@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="connect4.js"></script>
+
+    <title>Document</title>
+</head>
+<script>
+var isfullscreen = false;
+var db = false;
+function toggleFullScreen(){
+db = document.body;
+if(isfullscreen == false){
+    if(db.requestFullScreen){
+        db.requestFullScreen();
+    } else if(db.webkitRequestFullscreen){
+        db.webkitRequestFullscreen();
+    } else if(db.mozRequestFullScreen){
+        db.mozRequestFullScreen();
+    } else if(db.msRequestFullscreen){
+        db.msRequestFullscreen();
+    }
+    isfullscreen = true;
+    wrap.style.width = window.screen.width+"px";
+    wrap.style.height = window.screen.height+"px";
+    //document.getElementsByClassName("fullscreen").innerHTML = "Windowed";
+} else {
+    if(document.cancelFullScreen){
+        document.cancelFullScreen();
+    } else if(document.exitFullScreen){
+        document.exitFullScreen();
+    } else if(document.mozCancelFullScreen){
+        document.mozCancelFullScreen();
+    } else if(document.webkitCancelFullScreen){
+        document.webkitCancelFullScreen();
+    } else if(document.msExitFullscreen){
+        document.msExitFullscreen();
+    }
+    isfullscreen = false;
+    wrap.style.width = "100%";
+    wrap.style.height = "auto";
+}
+}
+</script>
+<body>
+    <div id="con4red"><h1>Conn</h1></div>
+    <div id="con4blue"><h1>ect 4</h1></div>
+    <h4>It's <span id="player">Red</span>'s Turn!</h4>
+    <div id="timeDiv">Time: 00.00</div>
+    <br>
+    <div id="connect4"></div>
+    <br>
+    <br>
+    <button id="restart-btn">Play Again</button>	
+    <button id="fullscreen" onclick="toggleFullScreen()" ontouchstart="toggleFullScreen()">Full Screen</button>
+</body>
+<!-- This is where we load our client javascript -->
+<script src="main.js" defer></script>
+<script src="timer.js"></script>
+</html>
+
